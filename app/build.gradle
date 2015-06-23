@@ -1,0 +1,39 @@
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+    mavenCentral()
+}
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "com.example.android.spotifystreamer"
+        minSdkVersion 19
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.github.kaaes:spotify-web-api-android:825acdc630' // https://github.com/kaaes/spotify-web-api-android
+    compile 'com.squareup.retrofit:retrofit:1.9.0'  // Uses this to create RESTful Requests
+    compile 'com.squareup.okhttp:okhttp:2.2.0'  // Uses this to create HTTP connections
+}
