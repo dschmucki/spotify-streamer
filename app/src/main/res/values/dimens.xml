@@ -3,4 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="artist_search_result_image_padding">8dp</dimen>
+    <dimen name="small_image_size">200px</dimen>
+    <dimen name="large_image_size">640px</dimen>
 </resources>

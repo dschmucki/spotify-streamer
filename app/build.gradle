@@ -1,10 +1,3 @@
-repositories {
-    maven {
-        url "https://jitpack.io"
-    }
-    mavenCentral()
-}
-
 apply plugin: 'com.android.application'
 
 android {
@@ -30,10 +23,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.github.kaaes:spotify-web-api-android:825acdc630' // https://github.com/kaaes/spotify-web-api-android
+    compile 'com.github.kaaes:spotify-web-api-android:499044705c' // https://github.com/kaaes/spotify-web-api-android
     compile 'com.squareup.retrofit:retrofit:1.9.0'  // Uses this to create RESTful Requests
     compile 'com.squareup.okhttp:okhttp:2.2.0'  // Uses this to create HTTP connections
+    testCompile 'io.appium:java-client:3.0.0'
+    testCompile 'junit:junit:4.12'
 }

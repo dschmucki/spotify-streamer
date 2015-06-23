@@ -12,8 +12,11 @@ buildscript {
     }
 }
 
-allprojects {
+subprojects {
     repositories {
         jcenter()
+        maven {
+            url "https://jitpack.io"
+        }
     }
 }

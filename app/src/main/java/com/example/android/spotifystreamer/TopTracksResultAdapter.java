@@ -8,19 +8,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.android.spotifystreamer.data.SpotifyStreamerTrack;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
-
-import kaaes.spotify.webapi.android.models.Image;
-import kaaes.spotify.webapi.android.models.Track;
 
 /**
  * Created by domi on 15.06.15.
  */
-public class TopTracksResultAdapter<A> extends ArrayAdapter<Track> {
+public class TopTracksResultAdapter<A> extends ArrayAdapter<SpotifyStreamerTrack> {
 
-    public static int SMALL_IMAGE_SIZE = 200;
 
     public TopTracksResultAdapter(Context context, int resource) {
         super(context, resource);
@@ -34,40 +29,25 @@ public class TopTracksResultAdapter<A> extends ArrayAdapter<Track> {
             convertView = layoutInflater.inflate(R.layout.top_tracks_result, null);
         }
 
-        Track track = getItem(position);
+        SpotifyStreamerTrack spotifyStreamerTrack = getItem(position);
 
-        if (track != null) {
+        if (spotifyStreamerTrack != null) {
             ImageView albumImageView = (ImageView) convertView.findViewById(R.id.top_tracks_result_image_view);
             TextView trackNameTextView = (TextView) convertView.findViewById(R.id.top_tracks_result_track_text_view);
             TextView albumNameTextView = (TextView) convertView.findViewById(R.id.top_tracks_result_album_text_view);
 
             if (albumImageView != null) {
-                List<Image> images = track.album.images;
-                if (images != null && !images.isEmpty()) {
-                    String url = getSmallImageUrl(images);
-                    Picasso.with(getContext()).load(url).fit().centerCrop().into(albumImageView);
-                }
+                Picasso.with(getContext()).load(spotifyStreamerTrack.getSmallImageUrl()).placeholder(R.mipmap.ic_launcher).fit().centerCrop().into(albumImageView);
             }
 
             if (trackNameTextView != null) {
-                trackNameTextView.setText(track.name);
+                trackNameTextView.setText(spotifyStreamerTrack.getTrackName());
             }
 
             if (albumNameTextView != null) {
-                albumNameTextView.setText(track.album.name);
+                albumNameTextView.setText(spotifyStreamerTrack.getAlbumName());
             }
         }
-
         return convertView;
-
-    }
-
-    private String getSmallImageUrl(final List<Image> images) {
-        for (Image i : images) {
-            if (i.height == SMALL_IMAGE_SIZE || i.width == SMALL_IMAGE_SIZE) {
-                return i.url;
-            }
-        }
-        return images.get(0).url;
     }
 }
