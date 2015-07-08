@@ -157,7 +157,9 @@ public class SearchArtistActivity extends AppCompatActivity implements AdapterVi
                     return i.url;
                 }
             }
-            return images.size() > 0 ? images.get(0).url : null;
+            int size = images.size();
+            // get smallest image, images are sorted by size, largest first
+            return size > 0 ? images.get(size - 1).url : null;
         }
     }
 
