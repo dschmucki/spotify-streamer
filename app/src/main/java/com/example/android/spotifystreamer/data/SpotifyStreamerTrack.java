@@ -10,6 +10,9 @@ import android.os.Parcelable;
  */
 public class SpotifyStreamerTrack implements Parcelable {
 
+    public static final String TRACK_PARCELABLE = "trackParcelable";
+    public static final String POSITION = "position";
+
     String trackName;
     String albumName;
     String smallImageUrl;

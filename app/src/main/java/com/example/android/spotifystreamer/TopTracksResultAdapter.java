@@ -26,7 +26,7 @@ public class TopTracksResultAdapter<A> extends ArrayAdapter<SpotifyStreamerTrack
 
         if (convertView == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-            convertView = layoutInflater.inflate(R.layout.top_tracks_result, null);
+            convertView = layoutInflater.inflate(R.layout.list_item_top_tracks, null);
         }
 
         SpotifyStreamerTrack spotifyStreamerTrack = getItem(position);

@@ -9,6 +9,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/spotify_streamer_app_name"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".SearchArtistActivity"
             android:label="@string/spotify_streamer_app_name">
@@ -17,10 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".TopTracksActivity"
-            android:label="@string/top_10_tracks"
-            android:parentActivityName=".SearchArtistActivity"></activity>
+            android:label="@string/top_10_tracks" />
+
+        <activity android:name=".PlayerActivity" />
+
     </application>
 
 </manifest>

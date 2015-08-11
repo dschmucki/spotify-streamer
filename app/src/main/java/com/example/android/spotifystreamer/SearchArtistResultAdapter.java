@@ -25,7 +25,7 @@ public class SearchArtistResultAdapter<A> extends ArrayAdapter<SpotifyStreamerAr
 
         if (convertView == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-            convertView = layoutInflater.inflate(R.layout.search_artist_result, null);
+            convertView = layoutInflater.inflate(R.layout.list_item_search_artist, null);
         }
 
         SpotifyStreamerArtist spotifyStreamerArtist = getItem(position);
