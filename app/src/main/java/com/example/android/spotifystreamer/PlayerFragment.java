@@ -47,6 +47,7 @@ public class PlayerFragment extends DialogFragment implements MediaPlayer.OnPrep
 
     private MediaPlayer mediaPlayer;
     private Timer timer;
+    private boolean startPlaying = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class PlayerFragment extends DialogFragment implements MediaPlayer.OnPrep
             artist = arguments.getString(SpotifyStreamerArtist.ARTIST_NAME);
             spotifyStreamerTracks = arguments.getParcelableArrayList(SpotifyStreamerTrack.TRACK_PARCELABLE);
             position = arguments.getInt(SpotifyStreamerTrack.POSITION);
+            startPlaying = true;
         }
 
         View rootView = inflater.inflate(R.layout.fragment_player, container, false);
@@ -95,13 +97,7 @@ public class PlayerFragment extends DialogFragment implements MediaPlayer.OnPrep
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!mediaPlayer.isPlaying()) {
-                    mediaPlayer.start();
-                    playButton.setImageResource(android.R.drawable.ic_media_pause);
-                } else {
-                    mediaPlayer.pause();
-                    playButton.setImageResource(android.R.drawable.ic_media_play);
-                }
+                play();
             }
         });
 
@@ -166,6 +162,16 @@ public class PlayerFragment extends DialogFragment implements MediaPlayer.OnPrep
         }
     }
 
+    private void play() {
+        if (!mediaPlayer.isPlaying()) {
+            mediaPlayer.start();
+            playButton.setImageResource(android.R.drawable.ic_media_pause);
+        } else {
+            mediaPlayer.pause();
+            playButton.setImageResource(android.R.drawable.ic_media_play);
+        }
+    }
+
     @Override
     public void onPrepared(MediaPlayer mp) {
         playButton.setEnabled(true);
@@ -196,6 +202,10 @@ public class PlayerFragment extends DialogFragment implements MediaPlayer.OnPrep
             }
         };
         timer.schedule(timerTask, 0, 40);
+        if (startPlaying) {
+            play();
+            startPlaying = false;
+        }
     }
 
     @Override
